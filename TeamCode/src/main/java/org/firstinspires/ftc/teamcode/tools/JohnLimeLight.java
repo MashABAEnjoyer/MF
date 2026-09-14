@@ -8,7 +8,6 @@ import com.qualcomm.robotcore.hardware.IMU;
 
 import org.firstinspires.ftc.robotcore.external.navigation.Pose3D;
 import org.firstinspires.ftc.robotcore.external.navigation.YawPitchRollAngles;
-import org.firstinspires.ftc.teamcode.datatypes.Point;
 
 import java.util.List;
 
@@ -55,13 +54,11 @@ public class JohnLimeLight {
         return motif;
     }
 
-    public static Point getPosition(Pose3D botpose) {
+    public static double[] getPosition(Pose3D botpose) {
         if (botpose != null) {
-            double x = botpose.getPosition().x;
-            double y = botpose.getPosition().y;
-            x *= 39.3701;
-            y *= 39.3701;
-            return new Point(x, y);
+            double x = botpose.getPosition().x * 39.3701;
+            double y = botpose.getPosition().y * 39.3701;
+            return new double[] { x, y };
         } else {
             return null;
         }
@@ -79,9 +76,9 @@ public class JohnLimeLight {
         }
     }
 
-    public static boolean inZone(Point point) {
-        double y = point.getY();
-        double x = point.getX();
+    public static boolean inZone(double[] point) {
+        double y = point[1];
+        double x = point[0];
         if (((y < 72) && (y > Math.abs(x))) || ((y > 72) && (y < -Math.abs(x) - 48))) {
             return true;
         } else {

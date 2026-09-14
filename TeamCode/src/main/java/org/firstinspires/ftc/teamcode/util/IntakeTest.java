@@ -25,7 +25,13 @@ public class IntakeTest extends LinearOpMode {
         // to 'get' must correspond to the names assigned during the robot configuration
         // step (using the FTC Robot Controller app on the phone).
         intake = hardwareMap.get(DcMotor.class, "intake");
-        motors = HardwareMapper.getMotors(hardwareMap);
+        motors = new DcMotor[4];
+        motors[0] = hardwareMap.get(DcMotor.class, "backRight");
+        motors[1] = hardwareMap.get(DcMotor.class, "backLeft");
+        motors[2] = hardwareMap.get(DcMotor.class, "frontRight");
+        motors[3] = hardwareMap.get(DcMotor.class, "frontLeft");
+        motors[1].setDirection(DcMotor.Direction.REVERSE);
+        motors[3].setDirection(DcMotor.Direction.REVERSE);
 
 
         // To drive forward, most robots need the motor on one side to be reversed, because the axles point in opposite directions.
