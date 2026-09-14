@@ -2,10 +2,10 @@ package org.firstinspires.ftc.teamcode.datatypes;
 
 import androidx.annotation.NonNull;
 
-public class Pair {
+public class PairJ {
     public double x, y;
 
-    public Pair(double x, double y) {
+    public PairJ(double x, double y) {
         this.x = x;
         this.y = y;
     }
@@ -30,14 +30,14 @@ public class Pair {
         x = x*Math.cos(radians) - y*Math.sin(radians);
         y = x*Math.sin(radians) + y*Math.cos(radians);
     }
-    public Pair getRotated(double radians) {
-        return new Pair(
+    public PairJ getRotated(double radians) {
+        return new PairJ(
                 x*Math.cos(radians) - y*Math.sin(radians),
                 x*Math.sin(radians) + y*Math.cos(radians));
     }
 
 
-    public void add(Pair p2) {
+    public void add(PairJ p2) {
         this.x += p2.getX();
         this.y += p2.getY();
     }
@@ -46,7 +46,7 @@ public class Pair {
         x = x/width;
         y = y/height;
     }
-    public void normalize(Pair dim) {
+    public void normalize(PairJ dim) {
         normalize(dim.getY(), dim.getX());
     }
 
@@ -54,23 +54,23 @@ public class Pair {
         x = Math.round(x*width);
         y = Math.round(y*height);
     }
-    public void rasterize(Pair dim) {
+    public void rasterize(PairJ dim) {
         rasterize(dim.getY(), dim.getX());
     }
 
-    public Pair getRasterized(double height, double width) {
-        return new Pair(Math.round(x*width), Math.round(y*height));
+    public PairJ getRasterized(double height, double width) {
+        return new PairJ(Math.round(x*width), Math.round(y*height));
     }
-    public Pair getRasterized(Pair dim) {
+    public PairJ getRasterized(PairJ dim) {
         return getRasterized(dim.getY(), dim.getX());
     }
 
-    public double distance(Pair p) {
+    public double distance(PairJ p) {
         return Math.sqrt((Math.pow(this.x - p.getX(), 2) + Math.pow(this.y - p.getY(), 2)));
     }
 
-    public Pair copy() {
-        return new Pair(x, y);
+    public PairJ copy() {
+        return new PairJ(x, y);
     }
 
     @NonNull
