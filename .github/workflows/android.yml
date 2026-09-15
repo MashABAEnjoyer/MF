@@ -34,6 +34,8 @@ jobs:
 
       - name: Set up Android SDK
         uses: android-actions/setup-android@v4
+        with:
+          packages: platyform-tools
 
       - name: Install SDK platform and NDK
         run: sdkmanager "platforms;android-30" "ndk;21.3.6528147"
