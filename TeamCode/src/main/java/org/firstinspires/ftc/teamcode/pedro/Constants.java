@@ -31,47 +31,13 @@ public class Constants {
             }
     );
 
+    // to be tuned
     public static PinpointConfig localizerConfig = new PinpointConfig(
-            c -> {
-                c.name.set("pinpoint");
-                c.xPodOffset.set(0.0);
-                c.yPodOffset.set(0.0);
-                c.xPodDirection.set(GoBildaPinpointDriver.EncoderDirection.FORWARD);
-                c.yPodDirection.set(GoBildaPinpointDriver.EncoderDirection.FORWARD);
-            }
+            c -> {}
     );
 
+    // to be tuned
     public static ForesightConfig foresightConfig = new ForesightConfig(
-            c -> {
-                Controller primaryTranslationalForward = Controller.proportional(0.3);
-                Controller secondaryTranslationalForward = Controller.proportional(0.1);
-                Controller primaryTranslationalLateral = Controller.proportional(0.3);
-                Controller secondaryTranslationalLateral = Controller.proportional(0.1);
-
-                c.forwardTranslational.set(Controller.piecewise(secondaryTranslationalForward).put(2.5, primaryTranslationalForward));
-                c.strafeTranslational.set(Controller.piecewise(secondaryTranslationalLateral).put(2.5, primaryTranslationalLateral));
-
-                c.coast.set(Controller.proportionalFeedforward(0.01));
-                c.brake.set(Controller.proportionalFeedforward(0.01));
-
-                c.headingFeedback.set(Controller.proportional(5.0));
-                c.headingBrakeCoefficients.set(Vector2D.cartesian(0.05, 0.006));
-
-                c.linearBrakeCoefficients.set(Matrix.diag(0.1, 0.09));
-                c.quadraticBrakeCoefficients.set(Matrix.diag(0.0015, 0.0014));
-
-                c.maxAchievableForwardVelocity.set(60.0);
-                c.maxAchievableStrafeVelocity.set(50.0);
-                c.naturalForwardDeceleration.set(80.0);
-                c.naturalStrafeDeceleration.set(100.0);
-            }
+            c -> {}
     );
-
-    public static Follower create(HardwareMap h) {
-        return new Follower(
-                new PinpointLocalizer(h, localizerConfig),
-                new Mecanum(h, drivetrainConfig),
-                new Foresight(foresightConfig)
-        );
-    }
 }
