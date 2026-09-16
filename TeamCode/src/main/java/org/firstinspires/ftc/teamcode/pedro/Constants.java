@@ -40,4 +40,12 @@ public class Constants {
     public static ForesightConfig foresightConfig = new ForesightConfig(
             c -> {}
     );
+
+    public static Follower create(HardwareMap hp) {
+        return new Follower(
+                new PinpointLocalizer(hp, localizerConfig),
+                new Mecanum(hp, drivetrainConfig),
+                new Foresight(foresightConfig)
+        );
+    }
 }
