@@ -6,15 +6,15 @@ import com.qualcomm.robotcore.hardware.Servo
 
 @TeleOp(name = "AdjustableHood")
 class AdjustableHood : OpMode(){
-    private lateinit var transfer : Servo
+    private lateinit var hood : Servo
     override fun init() {
-        transfer = hardwareMap.get(Servo::class.java, "hood")
+        hood = hardwareMap.get(Servo::class.java, "hood")
     }
 
     override fun loop() {
-        when(){
-            gamepad1.right_bumper -> transfer.position = 0.5
-            gamepad1.left_bumper -> transfer.position = -0.5
+        when{
+            gamepad1.right_bumper -> hood.position += 0.1
+            gamepad1.left_bumper -> hood.position -= 0.1
 
         }
     }
